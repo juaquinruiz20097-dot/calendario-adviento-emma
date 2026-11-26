@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#8f243f">
+
+<title>Calendario Adviento Emma</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{margin:0;font-family:Georgia,serif;background:linear-gradient(160deg,#fff0f2,#f8dce2,#fff7ed);color:#542532;text-align:center;min-height:100vh}
+
+header{padding:35px 18px 20px}
+
+h1{font-size:clamp(30px,8vw,48px);margin:12px 0;color:#9e3452}
+
+.subtitle{font-size:16px;line-height:1.6}
+
+.heart{font-size:38px}
+
+.names{font-size:15px;letter-spacing:2px;color:#a45a6d}
+
+main{max-width:650px;margin:auto;padding:12px 18px 45px}
+
+.intro{background:#ffffffb8;border:1px solid #edc4ce;border-radius:20px;padding:18px;margin:12px 0 25px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+.day{min-height:88px;border:1px solid #e8b9c5;border-radius:17px;background:linear-gradient(145deg,#fff,#f8dce4);color:#9e3452;font-family:Georgia,serif;font-size:25px;font-weight:bold;box-shadow:0 4px 10px #9d526022;cursor:pointer;position:relative}
+
+.day small{display:block;font-size:10px;font-weight:normal;margin-top:5px}
+
+.day.opened{background:linear-gradient(145deg,#a63c59,#7c203d);color:white}
+
+.day.locked{opacity:.55;cursor:not-allowed}
+
+.day.locked:after{content:"🔒";position:absolute;right:5px;top:5px;font-size:12px}
+
+footer{padding:22px;font-size:13px;color:#986879}
+
+.modal{display:none;position:fixed;inset:0;background:#35131de8;z-index:5;align-items:center;justify-content:center;padding:18px}
+
+.modal.show{display:flex}
+
+.panel{background:#fff8f5;border-radius:24px;padding:27px 22px;max-width:480px;width:100%;max-height:85vh;overflow:auto;box-shadow:0 10px 40px #0004}
+
+.panel h2{color:#a03957;font-size:25px}
+
+.panel p{line-height:1.7;white-space:pre-line}
+
+.close{border:0;border-radius:30px;background:#96334f;color:white;padding:13px 25px;font-size:15px;margin-top:15px}
+
+.preview{margin:20px auto 0;border:1px solid #dca9b7;background:#fff8f5;color:#8f3450;border-radius:20px;padding:10px 17px}
+
+@media(max-width:370px){.grid{gap:8px}.day{min-height:75px;font-size:21px}}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="heart">❤️</div>
+
+<div class="names">EMMA Y ALEJANDRO</div>
+
+<h1>Calendario Adviento Emma</h1>
+
+<div class="subtitle">24 días, 24 sorpresas y un montón de recuerdos por vivir.</div>
+
+</header>
+
+<main>
+
+<div class="intro">
+
+Cada día esconde un pequeño detalle preparado para ti.<br>
+
+Abre una cajita cada día y descubre lo que hay dentro. ❤️
+
+</div>
+
+<div class="grid" id="calendar"></div>
+
+<button class="preview" id="previewButton" onclick="togglePreview()">Activar vista previa</button>
+
+</main>
+
+<footer>Hecho con cariño por Alejandro ❤️</footer>
+
+<div class="modal" id="modal" onclick="closeOutside(event)">
+
+<div class="panel">
+
+<div class="heart">💌</div>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+<div id="extra"></div>
+
+<button class="close" onclick="closeModal()">Cerrar ❤️</button>
+
+</div>
+
+</div>
+
+<script>
+
+const days = [
+
+["Una razón para elegirte","Un texto y una fotografía vuestra. Aquí irá la carta que Alejandro escribirá para ti."],
+
+["¿Cuánto sabes de nosotros?","Un pequeño juego de cinco preguntas sobre vuestra historia. ¡A ver cuántas aciertas!"],
+
+["Lo que significas para mí","Una carta especial sobre vuestra historia y todo lo que Emma significa hoy."],
+
+["10 recuerdos contigo","Un álbum de diez fotografías, cada una acompañada de un pequeño mensaje."],
+
+["5 cosas que quiero vivir contigo","Cinco planes y sueños que todavía os quedan por compartir."],
+
+["Tú decides por nosotros","Una pequeña encuesta con cinco decisiones para descubrir vuestros planes ideales."],
+
+["Lo que nunca quiero que olvides","Una carta personal de Alejandro para Emma."],
+
+["Una canción, mil sentimientos","La instrumental de 2.0#1 de Lorna y unas palabras especiales sobre la canción."],
+
+["Nuestra historia","Una línea temporal con los momentos más importantes de vuestra historia."],
+
+["Si pudiera volver a vivir un día contigo","Una fotografía y un texto sobre ese día que Alejandro volvería a vivir."],
+
+["Nuestro diccionario","Vuestras palabras, motes, expresiones y bromas internas."],
+
+["12 razones por las que me haces feliz","Doce pequeñas tarjetas con doce razones diferentes."],
+
+["Nuestro próximo día juntos","Una cita sorpresa organizada por Alejandro, paso a paso."],
+
+["10 cosas que me recuerdan a ti","Diez lugares, canciones, objetos o detalles que recuerdan a Emma."],
+
+["Si tuviera que volver a elegirte","Un texto sobre volver a encontrarse, elegirse y compartir la vida."],
+
+["Un ratito de mi voz para ti","Una grabación de Alejandro hablando directamente para Emma."],
+
+["El mapa de nuestros sueños","Cinco destinos que os gustaría descubrir juntos."],
+
+["El museo de nuestras tonterías","Seis momentos divertidos de vuestra historia, como si fueran obras de museo."],
+
+["¿Quién es más probable que...?","Diez situaciones divertidas para elegir quién de los dos las haría."],
+
+["20 motivos para sonreír","Una ruleta con veinte mensajes preparados por Alejandro."],
+
+["Nuestra película","El tráiler de vuestra historia, con fotos, fechas y recuerdos."],
+
+["Quiero contarte algo…","Una carta especial y una pequeña petición para Emma."],
+
+["Una última misión antes de Navidad","Cinco pequeños retos antes de llegar al último día."],
+
+["Mi regalo eres tú","Una sorpresa de Navidad, una carta y un vídeo dedicado a Emma."]
+
+];
+
+let preview = new URLSearchParams(location.search).get("prueba")==="1";
+
+let opened = JSON.parse(localStorage.getItem("emmaOpened") || "[]");
+
+function allowed(day){
+
+ if(preview) return true;
+
+ const now = new Date();
+
+ if(now.getFullYear()>2026) return true;
+
+ if(now.getFullYear()<2026) return false;
+
+ return now.getMonth()===11 && now.getDate()>=day;
+
+}
+
+function render(){
+
+ const grid=document.getElementById("calendar");
+
+ grid.innerHTML="";
+
+ days.forEach((item,index)=>{
+
+  const n=index+1;
+
+  const btn=document.createElement("button");
+
+  btn.className="day"+(opened.includes(n)?" opened":"")+(allowed(n)?"":" locked");
+
+  btn.innerHTML=n+"<small>"+(opened.includes(n)?"Abierto":"Diciembre")+"</small>";
+
+  btn.onclick=()=>openDay(n);
+
+  grid.appendChild(btn);
+
+ });
+
+ document.getElementById("previewButton").textContent=preview?"Vista previa activada ✓":"Activar vista previa";
+
+}
+
+function openDay(n){
+
+ if(!allowed(n)){
+
+  alert("¡Todavía no! Esta sorpresa se desbloquea el "+n+" de diciembre. ❤️");
+
+  return;
+
+ }
+
+ opened.push(n);
+
+ opened=[...new Set(opened)];
+
+ localStorage.setItem("emmaOpened",JSON.stringify(opened));
+
+ document.getElementById("modalTitle").textContent="Día "+n+" · "+days[n-1][0];
+
+ document.getElementById("modalText").textContent=days[n-1][1];
+
+ document.getElementById("extra").innerHTML="";
+
+ document.getElementById("modal").classList.add("show");
+
+ render();
+
+}
+
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+
+function closeOutside(e){if(e.target.id==="modal")closeModal()}
+
+function togglePreview(){
+
+ preview=!preview;
+
+ document.getElementById("previewButton").textContent=preview?"Vista previa activada ✓":"Activar vista previa";
+
+ render();
+
+}
+
+render();
+
+</script>
+
+</body>
+
+</html>

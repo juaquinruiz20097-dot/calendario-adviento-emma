@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -7,6 +9,8 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#4b0712">
 
 <title>Calendario Adviento Emma</title>
 
@@ -18,11 +22,11 @@ body{
 
  margin:0;
 
- font-family:Georgia,serif;
+ font-family:Georgia,'Times New Roman',serif;
 
- color:#40232a;
+ background:radial-gradient(circle at top,#8b1d30,#35040c 75%);
 
- background:linear-gradient(145deg,#390811,#8d1d2c);
+ color:#fff8f1;
 
  min-height:100vh;
 
@@ -32,37 +36,29 @@ button{font:inherit;cursor:pointer}
 
 .hidden{display:none!important}
 
-.screen{
+#home{
 
  min-height:100vh;
 
- padding:22px 15px;
-
  display:flex;
 
- justify-content:center;
+ flex-direction:column;
 
  align-items:center;
 
-}
-
-.welcome{
+ justify-content:center;
 
  text-align:center;
 
- color:white;
-
- width:100%;
-
- max-width:650px;
+ padding:24px;
 
 }
 
-.welcome img{
+.hero-photo{
 
  width:min(88vw,430px);
 
- height:min(55vh,500px);
+ height:min(58vh,520px);
 
  object-fit:cover;
 
@@ -74,7 +70,9 @@ button{font:inherit;cursor:pointer}
 
 h1{
 
- font-size:clamp(2rem,7vw,3rem);
+ font-size:clamp(2rem,7vw,3.2rem);
+
+ margin:22px 0 8px;
 
  font-weight:normal;
 
@@ -82,77 +80,43 @@ h1{
 
 .subtitle{
 
- line-height:1.6;
+ font-size:1.05rem;
+
+ line-height:1.5;
+
+ max-width:440px;
+
+ margin:0 auto 24px;
 
 }
 
 .gift-start{
 
- width:120px;
-
- height:90px;
-
- background:#a91f32;
-
  border:0;
 
- border-radius:5px;
+ background:#b51e35;
 
  color:white;
 
- font-size:30px;
+ border-radius:14px;
 
- position:relative;
+ padding:20px 30px;
 
- box-shadow:0 7px 0 #510b16;
+ font-size:1.2rem;
 
-}
-
-.gift-start:before{
-
- content:"";
-
- position:absolute;
-
- left:48px;
-
- top:0;
-
- height:100%;
-
- width:22px;
-
- background:#f4edf0;
+ box-shadow:0 9px 0 #6d1020;
 
 }
 
-.gift-start:after{
+#calendar{
 
- content:"";
+ padding:22px 14px 40px;
 
- position:absolute;
-
- left:0;
-
- top:35px;
-
- width:100%;
-
- height:18px;
-
- background:#f4edf0;
-
-}
-
-.gift-start span{position:relative;z-index:1}
-
-.calendar-wrap{
-
- width:100%;
-
- max-width:850px;
+ max-width:760px;
 
  margin:auto;
+
+ text-align:center;
 
 }
 
@@ -162,39 +126,23 @@ h1{
 
  justify-content:space-between;
 
+ align-items:center;
+
  margin-bottom:20px;
 
 }
 
-.topbar button{
+.back,.music{
 
- background:#ffffff20;
-
- color:white;
-
- border:1px solid #ffffff70;
-
- border-radius:25px;
-
- padding:9px 13px;
-
-}
-
-.calendar-title{
-
- text-align:center;
+ background:#ffffff18;
 
  color:white;
 
- font-size:clamp(1.7rem,5vw,2.5rem);
+ border:1px solid #ffffff55;
 
-}
+ border-radius:30px;
 
-.calendar-sub,.progress{
-
- text-align:center;
-
- color:#f8e9df;
+ padding:10px 14px;
 
 }
 
@@ -202,7 +150,7 @@ h1{
 
  display:grid;
 
- grid-template-columns:repeat(4,1fr);
+ grid-template-columns:repeat(4,minmax(0,1fr));
 
  gap:12px;
 
@@ -210,77 +158,77 @@ h1{
 
 .day{
 
- min-height:95px;
+ min-height:100px;
 
- border:2px solid #d8b46a;
+ border:1px solid #d6b36b;
 
- border-radius:10px;
+ border-radius:12px;
 
- background:linear-gradient(145deg,#a72a3a,#6d101e);
+ background:linear-gradient(145deg,#a51e34,#610c1c);
 
  color:white;
 
- font-size:25px;
+ display:flex;
 
- box-shadow:0 5px 0 #390711;
+ flex-direction:column;
+
+ align-items:center;
+
+ justify-content:center;
 
 }
+
+.day .num{font-size:1.8rem}
+
+.day .gift{font-size:1.3rem}
 
 .day.opened{
 
- background:linear-gradient(145deg,#d9b36b,#9b6a2c);
+ background:linear-gradient(145deg,#d2a85c,#8b5a26);
 
 }
 
-.day.locked{opacity:.5}
+.day.locked{opacity:.55}
 
-.modal{
+#progress{margin:20px 0}
+
+#modal{
 
  position:fixed;
 
  inset:0;
 
- z-index:10;
-
- background:#160308e8;
+ background:#160006d9;
 
  display:flex;
 
- justify-content:center;
-
  align-items:center;
 
- padding:15px;
+ justify-content:center;
+
+ padding:14px;
+
+ z-index:5;
 
 }
 
 .paper{
 
- width:min(100%,720px);
+ background:#fff8f1;
+
+ color:#42121b;
+
+ width:min(100%,650px);
 
  max-height:92vh;
 
  overflow:auto;
 
- background:#fffaf4;
+ border-radius:12px;
 
- border-radius:8px;
-
- padding:25px;
+ padding:24px 20px 28px;
 
 }
-
-.paper h2{
-
- text-align:center;
-
- color:#821b2a;
-
- font-weight:normal;
-
-}
-
-.paper p{line-height:1.75}
 
 .close{
 
@@ -288,87 +236,191 @@ h1{
 
  border:0;
 
+ background:#ead9d4;
+
+ color:#42121b;
+
  border-radius:50%;
 
- background:#821b2a;
+ width:36px;
 
- color:white;
+ height:36px;
 
- width:35px;
-
- height:35px;
+ font-size:1.2rem;
 
 }
 
-.option{
+.paper h2{
+
+ text-align:center;
+
+ font-size:1.8rem;
+
+ font-weight:normal;
+
+ margin:12px 28px 20px;
+
+}
+
+.paper p{
+
+ font-family:Arial,sans-serif;
+
+ font-size:1rem;
+
+ line-height:1.7;
+
+ white-space:pre-line;
+
+}
+
+.media{
+
+ display:block;
+
+ max-width:100%;
+
+ max-height:55vh;
+
+ margin:16px auto;
+
+ object-fit:contain;
+
+ border-radius:8px;
+
+}
+
+.choice{
 
  display:block;
 
  width:100%;
 
+ margin:9px 0;
+
  text-align:left;
-
- background:white;
-
- border:1px solid #d7b8b2;
-
- border-radius:8px;
 
  padding:12px;
 
- margin:9px 0;
+ border:1px solid #d8c0b9;
+
+ border-radius:9px;
+
+ background:#f0e2dc;
+
+ color:#42121b;
 
 }
 
-.option.selected{background:#f3dfe0}
+.actions{
 
-.photo-placeholder{
+ display:flex;
 
- padding:20px;
+ justify-content:center;
 
- background:#f1e4dc;
+ gap:10px;
 
- border:1px dashed #b58b83;
+ flex-wrap:wrap;
 
- text-align:center;
-
- margin:12px 0;
+ margin-top:18px;
 
 }
 
-.action{
-
- background:#821b2a;
-
- color:white;
+.actions button{
 
  border:0;
 
- border-radius:25px;
+ border-radius:9px;
 
- padding:12px 20px;
+ padding:11px 16px;
+
+ background:#8d1729;
+
+ color:white;
 
 }
 
-.item-card{
+.envelope{
 
- padding:15px;
+ background:#8c1a2c;
 
- background:#f8eee8;
+ color:white;
 
- border-left:4px solid #a32a3c;
+ border:2px solid #d9b66f;
+
+ border-radius:10px;
+
+ padding:22px;
 
  margin:12px 0;
 
 }
 
-@media(max-width:520px){
+.small-note{
 
- .grid{gap:9px}
+ font: .85rem Arial,sans-serif;
 
- .day{min-height:80px}
+ text-align:center;
 
- .paper{padding:18px}
+}
+
+textarea{
+
+ width:100%;
+
+ min-height:95px;
+
+ padding:12px;
+
+ border:1px solid #c8aaa2;
+
+ border-radius:8px;
+
+}
+
+.photo-grid{
+
+ display:grid;
+
+ grid-template-columns:repeat(2,1fr);
+
+ gap:10px;
+
+}
+
+.photo-grid img{
+
+ width:100%;
+
+ height:190px;
+
+ object-fit:cover;
+
+ border-radius:7px;
+
+}
+
+.photo-grid figure{margin:0}
+
+.photo-grid figcaption{
+
+ text-align:center;
+
+ margin:6px 0 10px;
+
+}
+
+@media(max-width:420px){
+
+ .grid{gap:8px}
+
+ .day{min-height:82px}
+
+ .day .num{font-size:1.5rem}
+
+ .paper{padding:18px 15px}
+
+ .photo-grid img{height:145px}
 
 }
 
@@ -378,47 +430,59 @@ h1{
 
 <body>
 
-<section id="welcome" class="screen">
+<section id="home">
 
- <div class="welcome">
+ <img class="hero-photo"
 
-  <img src="8ab45570-f398-4989-87ca-93abf22fa6ca.jpeg" alt="Emma y Alejandro">
+ src="8ab45570-f398-4989-87ca-93abf22fa6ca.jpeg"
 
-  <h1>Calendario Adviento Emma</h1>
+ alt="Alejandro y Emma">
 
-  <p class="subtitle">Cada cajita guarda un recuerdo, una sorpresa o algo que quiero decirte.</p>
+ <h1>24 razones para elegirte cada día</h1>
 
-  <button class="gift-start" onclick="showCalendar()"><span>♥</span></button>
+ <p class="subtitle">
 
- </div>
+ Cada cajita guarda un recuerdo, una sorpresa
 
-</section>
+ o algo que quiero decirte.
 
-<section id="calendar" class="screen hidden">
+ </p>
 
- <div class="calendar-wrap">
+ <button class="gift-start" onclick="showCalendar()">
 
-  <div class="topbar">
+ 🎁 Abrir mi calendario
 
-   <button onclick="backHome()">← Inicio</button>
-
-   <button onclick="toggleMusic()">♫ Música</button>
-
-  </div>
-
-  <h1 class="calendar-title">24 razones para elegirte cada día</h1>
-
-  <p class="calendar-sub">Emma & Alejandro</p>
-
-  <div id="days" class="grid"></div>
-
-  <p id="progress" class="progress"></p>
-
- </div>
+ </button>
 
 </section>
 
-<div id="modal" class="modal hidden">
+<section id="calendar" class="hidden">
+
+ <div class="topbar">
+
+  <button class="back" onclick="goHome()">← Inicio</button>
+
+  <button class="music" onclick="toggleMusic()">♫ Música</button>
+
+ </div>
+
+ <h1>Calendario de Adviento</h1>
+
+ <p>Emma y Alejandro ❤️</p>
+
+ <div id="progress"></div>
+
+ <div class="grid" id="grid"></div>
+
+ <p class="small-note">
+
+ Las sorpresas se desbloquean cada día de diciembre.
+
+ </p>
+
+</section>
+
+<div id="modal" class="hidden">
 
  <article class="paper">
 
@@ -430,616 +494,495 @@ h1{
 
 </div>
 
-<audio id="music" loop src="videoplayback.mp4"></audio>
+<audio id="song" src="videoplayback.mp4" preload="none"></audio>
+
 <script>
+ 
+const openedKey='emma_advent_opened_v2';
+let opened=JSON.parse(localStorage.getItem(openedKey)||'[]');
+let albumIndex=0;
+let timelineIndex=0;
+let dictionaryIndex=0;
+let museumIndex=0;
+let quizIndex=0;
+let quizAnswers=[];
+let rouletteUsed=[];
+let whoIndex=0;
 
-const titles = [
-
-"Una razón para elegirte",
-
-"¿Cuánto sabes de nosotros?",
-
-"Un capítulo de nuestra historia",
-
-"10 recuerdos contigo",
-
-"5 cosas que quiero vivir contigo",
-
-"Tú decides por nosotros",
-
-"Lo que nunca quiero que olvides",
-
-"Una canción, mil sentimientos",
-
-"Nuestra historia",
-
-"Si pudiera volver a vivir un día contigo",
-
-"Nuestro diccionario",
-
-"12 razones por las que me haces feliz",
-
-"Nuestro próximo día juntos",
-
-"10 cosas que me recuerdan a ti",
-
-"Si tuviera que volver a elegirte",
-
-"Un ratito de mi voz para ti",
-
-"El mapa de nuestros sueños",
-
-"El museo de nuestras tonterías",
-
-"¿Quién es más probable que…?",
-
-"Una cita conmigo sin salir de casa",
-
-"Nuestra película",
-
-"Quiero contarte algo…",
-
-"Una última misión antes de Navidad",
-
-"Mi regalo eres tú"
-
+const dayTitles=[
+'Una razón para elegirte',
+'¿Cuánto sabes de nosotros?',
+'Un capítulo de nuestra historia',
+'10 recuerdos contigo',
+'5 cosas que quiero vivir contigo',
+'Tú decides por nosotros',
+'Lo que nunca quiero que olvides',
+'Una canción, mil sentimientos',
+'Nuestra historia',
+'Si pudiera volver a vivir un día contigo',
+'Nuestro diccionario',
+'12 razones por las que me haces feliz',
+'Nuestro próximo día juntos',
+'10 cosas que me recuerdan a ti',
+'Si tuviera que volver a elegirte',
+'Un ratito de mi voz para ti',
+'El mapa de nuestros sueños',
+'El museo de nuestras tonterías',
+'¿Quién es más probable que…?',
+'Una cita conmigo sin salir de casa',
+'Nuestra película',
+'Quiero contarte algo…',
+'Una última misión antes de Navidad',
+'Mi regalo eres tú'
 ];
 
-const day2 = [
-
-["¿Dónde nos conocimos?",["A través de un amigo","En el instituto","En una fiesta","Por internet"],0],
-
-["¿Cuándo empezamos oficialmente?",["26 de enero de 2025","15 de julio de 2025","3 de septiembre de 2025","3 de diciembre de 2025"],2],
-
-["¿Qué vimos juntos en nuestro pueblo?",["Un concierto","Fuegos artificiales","Un espectáculo de luces","Una lluvia de estrellas"],1],
-
-["¿Cuál es uno de nuestros destinos soñados?",["Roma","Nueva York","Londres","Lisboa"],1],
-
-["¿Qué nos gusta hacer juntos?",["Ver series","Jugar a videojuegos","Estar abrazados y disfrutar de nuestra compañía","Ir de compras"],2]
-
-];
-
-const day6 = [
-
-["¿Qué elegirías para demostrarme cariño?",["Una carta bonita","Un regalo caro","Una canción","Una sorpresa enorme"],0],
-
-["Si pudiéramos repetir un momento nuestro, ¿cuál elegirías?",["Una cita cualquiera","El día que nos conocimos","Una tarde viendo una película","Un viaje"],1],
-
-["¿Qué apodo te gustaría que utilizáramos?",["Uno romántico","Uno gracioso","Uno en inglés","Ninguno"],1],
-
-["¿Qué harías si aparezco un día con una sorpresa sin avisar?",["Me quedaría quieta","Me lanzaría a abrazarte","Te preguntaría qué has hecho","Me haría la sorprendida"],1],
-
-["¿Qué promesa te gustaría que nos hiciéramos?",["Viajar mucho","No discutir nunca","Seguir cuidando nuestra relación","Darnos regalos"],2]
-
-];
-
-const dictionary = [
-
-["Abalosysusamigas","aura desde que aparecí en el mundo del roblox"],
-
-["Hasta el coño","frase que sueles usar tú mucho"],
-
-["Valep","con esto se cuando estás enfadada menos mal que te conozco eh"],
-
-["Te amo","depende del momento (es bait)"],
-
-["Toxica","aunque lo seas me gusta mucho 👉👈"],
-
-["Sapo","cuando no te digo cuál es el regalo o la sorpresa que tengo para ti"],
-
-["fuet","un día te llevo a algún museo de fuet por ahí y comemos mazo"],
-
-["Guilipollas","para después de cada mensaje bonito tuyo"]
-
-];
-
-const reasons = [
-
-"Me haces reír aunque no se te suba",
-
-"Me gusta el cariño que me das",
-
-"me ayudas con temas íntimos",
-
-"me gusta cuando te pones bien perrona",
-
-"eres un pedazo de queso pero no más que yo",
-
-"six","seven",
-
-"aunq sea estar abrazados me siento cómodo y feliz",
-
-"me das comida 👉👈",
-
-"estás muy atenta a mi",
-
-"me ayudas a socializar con tus amigas",
-
-"hay más razones pero como las ponga todas no acabo, te amo"
-
-];
-
-const destinations = [
-
-"Asturias",
-
-"Ver juntos las auroras boreales",
-
-"Egipto",
-
-"Disneyland Paris",
-
-"Nueva York",
-
-"Japón"
-
-];
-
-const museum = [
-
-["La traición de Roblox","Cuando Emma te vendió en un juego de Roblox."],
-
-["Los celos más inesperados","El día que te rayaste por aquella historia de Miguel."],
-
-["La revelación política","El día que descubriste que Emma era de izquierdas."],
-
-["Las tardes de parque","Aquellos ratitos en el parque con Emma y tu hermano pequeño."],
-
-["I LOVE RUIZ","El mítico vídeo de Emma diciendo «I love Ruiz»."],
-
-["La estrella de Soy Luna","Emma dando su propio concierto cantando Soy Luna."]
-
-];
-
-const day7 = `Día 7, como el bicho. Bueno, hoy como sorpresa te toca una carta.
-
-Lo siento mucho si no es algo divertido o algo así chulo. Creo que hay pocas cartas para lo mucho que soy yo de escribirte cosas.
-
-En esta carta lo que te quiero decir es que eres el amor de mi vida y, sí, me suda la polla, así lo digo.
-
-Dirás: «¿Cómo sé que eres el amor de mi vida?». Pues bueno, tienes todo lo que me gusta: eres tóxica, un pelín boba, también te mueves poco de la cama… JAJAJAJAJA. Na, es coña.
-
-Si te soy sincero, contigo siento un amor que nunca había sentido. Y no es algo de un rato, es algo de todos los días: de levantarme y sentir que me explota el corazón de lo mucho que te quiero. Es heavy, en verdad, pero no me arrepiento.
-
-También te digo que prometo estar para ti y para todo lo que necesites.
-
-Por eso, con esto y un bizcocho, te amo hasta el infinito y más allá. ❤️`;
-
-const day8 = `He escogido esta canción porque te has adueñado de ella y, cada vez que la veo, la escucho o cualquier cosa relacionada con ella, me acuerdo de ti.
-
-También la he elegido porque es muy bonita y porque me gustaría tatuármela junto contigo.
-
-Esta canción ha habido veces que hasta me ha hecho llorar, porque me recuerda a ti. Me genera una sensación de nostalgia y, a la vez, alegría por haberla compartido contigo. ❤️`;
-
-const day16 = `Jejejeje, otra carta. Lo bueno es que han pasado ya 7 días desde la otra, así no te lleno de cartas.
-
-Esto es una fumada, no sabes lo complicado que es esto. Lo hago porque te quiero y porque te tengo miedo. JAJAJAJAJA. Na, es broma.
-
-Estoy deseando verte y poder darte besos, que me relaja mazo. Aparte de que me quites los puntos negros, que seguro que a día de hoy tendré más para que me quites. He hasta pensado en llenarme la cara de mierda para que me los quites, porque me mola menos cuando me cantas al oído lo de Minnie.
-
-Pero bueno, igualmente, te doy las gracias por todo, amor. ❤️`;
-
-function placeholder(text){
-
- return `<div class="photo-placeholder">Pendiente de añadir: ${text}</div>`;
-
+function photo(name,alt='Recuerdo'){
+ return `<img class="media" src="${name}" alt="${alt}">`;
+}
+function video(name){
+ return `<video class="media" controls playsinline src="${name}"></video>`;
+}
+function photoInline(name){
+ return `<img src="${name}" style="width:100%;max-height:190px;object-fit:cover;border-radius:7px">`;
+}
+function para(text){
+ return `<p>${text}</p>`;
+}
+function showCalendar(){
+ document.getElementById('home').classList.add('hidden');
+ document.getElementById('calendar').classList.remove('hidden');
+ renderDays();
+}
+function goHome(){
+ document.getElementById('calendar').classList.add('hidden');
+ document.getElementById('home').classList.remove('hidden');
+}
+function renderDays(){
+ const grid=document.getElementById('grid');
+ grid.innerHTML='';
+ const now=new Date();
+ const preview=new URLSearchParams(location.search).has('prueba');
+ const unlocked=preview?24:
+ (now.getFullYear()>2026?24:
+ (now.getFullYear()<2026?0:
+ (now.getMonth()===11?now.getDate():0)));
+
+ for(let d=1;d<=24;d++){
+  const canOpen=d<=unlocked||opened.includes(d);
+  const b=document.createElement('button');
+  b.className='day'+(opened.includes(d)?' opened':'')+(!canOpen?' locked':'');
+  b.innerHTML=`<span class="gift">${opened.includes(d)?'🎁':'🎀'}</span><span class="num">${d}</span>`;
+  b.onclick=()=>canOpen?openDay(d):alert('Un poquito de paciencia, tu sorpresa llegará ❤️');
+  grid.appendChild(b);
+ }
+ document.getElementById('progress').textContent=
+ `${opened.length} de 24 sorpresas abiertas`;
+}
+function openDay(d){
+ document.getElementById('modal').classList.remove('hidden');
+ document.getElementById('content').innerHTML=renderContent(d);
+}
+function closeDay(){
+ document.getElementById('modal').classList.add('hidden');
+ document.getElementById('content').innerHTML='';
+}
+function markOpened(d){
+ if(!opened.includes(d)){
+  opened.push(d);
+  localStorage.setItem(openedKey,JSON.stringify(opened));
+  renderDays();
+ }
+}
+function toggleMusic(){
+ const a=document.getElementById('song');
+ if(a.paused){
+  a.play().catch(()=>alert('Comprueba que videoplayback.mp4 esté en el repositorio.'));
+ }else{
+  a.pause();
+ }
 }
 
-function p(text){return `<p>${text}</p>`;}
+const q2=[
+['¿Dónde nos conocimos?',['A través de un amigo','En el instituto','En una fiesta','Por redes sociales'],0],
+['¿Cuándo empezamos oficialmente nuestra relación?',['26 de enero de 2025','15 de julio de 2025','3 de septiembre de 2025','2 de enero de 2026'],2],
+['¿Qué vimos juntos en nuestro pueblo en uno de nuestros primeros momentos especiales?',['Un concierto','Fuegos artificiales','Un espectáculo de luces','Una lluvia de estrellas'],1],
+['¿Cuál es uno de nuestros viajes soñados?',['Roma','Nueva York','Londres','Lisboa'],1],
+['¿Qué nos gusta hacer juntos?',['Jugar a videojuegos','Ver series sin hablar','Estar abrazados y disfrutar de nuestra compañía','Hacer deporte'],2]
+];
 
-function renderContent(n){
+const q6=[
+['¿Qué elegirías para demostrarme cariño?',['Una carta bonita','Un regalo caro','Una sorpresa enorme','Una canción'],0],
+['Si pudiéramos repetir un momento nuestro, ¿cuál elegirías?',['El día que nos conocimos','Nuestra primera cita','Un viaje','Una tarde cualquiera'],0],
+['¿Qué apodo te gustaría que utilizáramos?',['Uno romántico','Uno gracioso','Uno secreto','Ninguno'],1],
+['¿Qué harías si aparezco un día con una sorpresa sin avisar?',['Me quedaría sorprendida','Me lanzaría a abrazarte','Te preguntaría qué has hecho','Me reiría'],1],
+['¿Qué promesa te gustaría que nos hiciéramos?',['Viajar mucho','No discutir nunca','Seguir cuidando nuestra relación','Regalarnos cosas'],2]
+];
 
- let c="";
+function quizMarkup(which){
+ quizIndex=0;
+ quizAnswers=[];
+ return `<div id="quiz">${quizQuestion(which)}</div>`;
+}
+function quizQuestion(which){
+ const arr=which===2?q2:q6;
+ const q=arr[quizIndex];
+ return `<p><b>Pregunta ${quizIndex+1} de ${arr.length}</b></p>
+ <p>${q[0]}</p>`+
+ q[1].map((x,i)=>`<button class="choice" onclick="answerQuiz(${which},${i})">${x}</button>`).join('');
+}
+function answerQuiz(which,i){
+ const arr=which===2?q2:q6;
+ quizAnswers.push(i);
+ quizIndex++;
+ if(quizIndex<arr.length){
+  document.getElementById('quiz').innerHTML=quizQuestion(which);
+  return;
+ }
+ let msg='';
+ if(which===2){
+  const score=quizAnswers.filter((x,j)=>x===arr[j][2]).length;
+  msg=score===5?'Me conoces demasiado bien, aunque todavía puedo sorprenderte.':
+  score>=3?'Se nota que tenemos muchos recuerdos juntos.':
+  score>=1?'Tenemos que crear muchos más recuerdos.':
+  '¡Nos toca repasar nuestra historia! 😂';
+  msg+='<br><br>Da igual cuántas hayas acertado, mi parte favorita siempre será seguir creando recuerdos contigo.';
+ }else{
+  msg='Me gusta imaginar que elegirías una carta bonita para demostrarme cariño, porque a veces las palabras dicen muchísimo.<br><br>Me encantaría volver al día en que nos conocimos, aunque ninguno de los dos supiera todo lo que acabaríamos viviendo.<br><br>También tendremos que encontrar ese apodo gracioso que sea solo nuestro JAJAJA.<br><br>Y si algún día aparezco con una sorpresa, espero ese abrazo.<br><br>Pero, sobre todo, quiero que sigamos cuidando lo nuestro, que no dejemos de elegirnos y que construyamos muchos recuerdos más.<br><br>Porque no quiero que esto sea solo una historia bonita, quiero que siga siendo nuestra historia. ❤️';
+ }
+ document.getElementById('quiz').innerHTML=`<h3>¡Has terminado!</h3><p>${msg}</p>`;
+}
 
- switch(n){
+function renderContent(d){
+ let out=`<h2>${dayTitles[d-1]}</h2>`;
+ switch(d){
 
  case 1:
-
- c=`<img src="dia1.jpeg" style="width:100%;max-height:400px;object-fit:contain" onerror="this.style.display='none'">
-
- ${placeholder("la foto elegida para el día 1, llamada dia1.jpeg")}
-
- <p>Hola, Emma ❤️</p>
-
- <p>Este es tu primer día del calendario y te quiero explicar un poco de qué va esto.</p>
-
- <p>Hay 24 días, como en cualquier calendario de Adviento. Cada día hay una sorpresa preparada y me gustaría que cada día te metieras y abrieras la sorpresa que corresponde.</p>
-
- <p>Espero que te guste este pequeño detalle. Aunque me ha dolido la cabeza preparándolo, lo hago porque te amo, Emma, y porque no sé cómo agradecerte este sentimiento que tengo hacia ti.</p>
-
- <p>Porque, sin exagerarte, eres la persona que más quiero en esta vida.</p>
-
- <p>Te amo. ❤️</p>`;
-
- break;
+ return out+
+ photo('IMG_4154.jpeg','Nuestra foto')+
+ para('Hola, Emma ❤️<br><br>Este es tu primer día del calendario y te quiero explicar un poco de qué va esto.<br><br>Hay 24 días, como en cualquier calendario de Adviento. Cada día hay una sorpresa preparada y me gustaría que cada día te metieras y abrieras la sorpresa que corresponde.<br><br>Espero que te guste este pequeño detalle. Aunque me ha dolido la cabeza preparándolo, lo hago porque te amo, Emma, y porque no sé cómo agradecerte este sentimiento que tengo hacia ti.<br><br>Porque, sin exagerarte, eres la persona que más quiero en esta vida.<br><br>Te amo. ❤️');
 
  case 2:
-
- c='<div id="quizArea"></div>';
-
- break;
+ return out+quizMarkup(2);
 
  case 3:
-
- c=p("Ya hace un año de que lo dejamos y, a ver, me pone triste recordarlo, pero en parte estoy contento porque gracias al destino, un año después, estamos juntos otra vez.")
-
- +p("Yo sabía que iba a volver contigo, pero no sabía que iba a ser un año después.")
-
- +p("Con esto espero que podamos disfrutar de una Navidad que nos merecemos juntos. Además, será nuestra primera Navidad juntos, algo que, en verdad, me hace muchísima ilusión.")
-
- +p("También te recuerdo que te amo, por si no lo sabías, y que estás muy guapa últimamente. Te voy a tener que encerrar donde sea, ¿eh? JAJAJA.")
-
- +p("Te amo, Emma. ❤️");
-
- break;
+ return out+para('Ya hace un año de que lo dejamos y, a ver, me pone triste recordarlo, pero en parte estoy contento porque gracias al destino, un año después, estamos juntos otra vez.<br><br>Yo sabía que iba a volver contigo, pero no sabía que iba a ser un año después.<br><br>Con esto espero que podamos disfrutar de una Navidad que nos merecemos juntos. Además, será nuestra primera Navidad juntos, algo que, en verdad, me hace muchísima ilusión.<br><br>También te recuerdo que te amo, por si no lo sabías, y que estás muy guapa últimamente. Te voy a tener que encerrar donde sea, ¿eh? JAJAJA.<br><br>Te amo, Emma. ❤️');
 
  case 4:
-
- c=placeholder("las 10 fotos del álbum, llamadas foto-dia4-1.jpeg hasta foto-dia4-10.jpeg")
-
- +p("El álbum de nuestros recuerdos irá pasando foto por foto.");
-
- break;
+ return out+`<div id="album">${albumMarkup()}</div>`;
 
  case 5:
-
- c="<ol><li>Viajar a Nueva York.</li><li>Hacer una ruta con Apolo.</li><li>Más cenas de sushi.</li><li>Una cita sorpresa.</li><li>Mudarnos donde sea, pero contigo.</li></ol>";
-
- break;
+ return out+
+ ['Viajar a Nueva York.','Hacer una ruta con Apolo.','Más cenas de sushi.','Una cita sorpresa.','Mudarnos donde sea, pero contigo.']
+ .map((x,i)=>`<p><b>${i+1}.</b> ${x}</p>`).join('');
 
  case 6:
-
- c='<div id="quizArea"></div>';
-
- break;
+ return out+quizMarkup(6);
 
  case 7:
-
- c=placeholder("el collage de fotos alrededor de la carta")+`<p>${day7}</p>`;
-
- break;
+ return out+para('Día 7, como el bicho. Bueno, hoy como sorpresa te toca una carta.<br><br>Lo siento mucho si no es algo divertido o algo así chulo. Creo que hay pocas cartas para lo mucho que soy yo de escribirte cosas.<br><br>En esta carta lo que te quiero decir es que eres el amor de mi vida y, sí, me suda la polla, así lo digo.<br><br>Dirás: «¿Cómo sé que eres el amor de mi vida?». Pues bueno, tienes todo lo que me gusta: eres tóxica, un pelín boba, también te mueves poco de la cama… JAJAJAJAJA. Na, es coña.<br><br>Si te soy sincero, contigo siento un amor que nunca había sentido. Y no es algo de un rato, es algo de todos los días: de levantarme y sentir que me explota el corazón de lo mucho que te quiero. Es heavy, en verdad, pero no me arrepiento.<br><br>También te digo que prometo estar para ti y para todo lo que necesites.<br><br>Por eso, con esto y un bizcocho, te amo hasta el infinito y más allá. ❤️')+
+ photo('IMG_4154.jpeg');
 
  case 8:
-
- c=placeholder("la foto pequeña de los dos")
-
- +`<p>${day8}</p><audio controls style="width:100%" src="videoplayback.mp4"></audio>`;
-
- break;
+ return out+
+ photo('IMG_5440.jpeg')+
+ `<audio controls class="media" src="videoplayback.mp4"></audio>`+
+ para('He escogido esta canción porque te has adueñado de ella y, cada vez que la veo, la escucho o cualquier cosa relacionada con ella, me acuerdo de ti.<br><br>También la he elegido porque es muy bonita y porque me gustaría tatuármela junto contigo.<br><br>Esta canción ha habido veces que hasta me ha hecho llorar, porque me recuerda a ti. Me genera una sensación de nostalgia y, a la vez, alegría por haberla compartido contigo. ❤️');
 
  case 9:
-
- c="<ol><li>26 de enero de 2025 — El comienzo de todo.</li><li>15 de julio de 2025 — Algo empezó a cambiar.</li><li>3 de septiembre de 2025 — Nuestro comienzo.</li><li>Abril de 2026 — Volvimos mejor que nunca.</li><li>Actualmente — Nuestro mejor momento. ❤️</li></ol>"
-
- +placeholder("las cinco fotos de la línea temporal");
-
- break;
+ return out+`<div id="timeline">${timelineMarkup()}</div>`;
 
  case 10:
-
- c=placeholder("los vídeos cortos de vosotros juntos")
-
- +p("Los vídeos se verán uno a uno y Emma podrá pasar al siguiente manualmente.");
-
- break;
+ return out+`<div id="videoalbum">${videoAlbumMarkup()}</div>`;
 
  case 11:
-
- c=dictionary.map((x,i)=>`<div class="item-card"><b>${i+1}. ${x[0]}</b><p>${x[1]}</p>${placeholder("foto relacionada")}</div>`).join("");
-
- break;
+ return out+`<div id="dictionary">${dictionaryMarkup()}</div>`;
 
  case 12:
-
- c='<div id="reasonArea" class="item-card">Pulsa para descubrir una razón.</div><button class="action" onclick="nextReason()">Girar la ruleta</button>';
-
- break;
+ return out+para('Pulsa para descubrir una razón cada vez. No se repiten hasta que hayan salido las doce.')+
+ `<div id="reason" style="text-align:center;font-size:1.25rem;padding:25px 5px">❤️</div>`+
+ `<div class="actions"><button onclick="spinReason()">Descubrir una razón</button></div>`;
 
  case 13:
-
- c='<p>Tenemos una cita pendiente… ❤️</p><div class="item-card">Pista 1: Una fecha especial: 23 de enero.</div><div class="item-card">Pista 2: Te voy a invitar a comer.</div><div class="item-card">Pista 3: Será en Madrid y habrá sushi.</div>';
-
- break;
+ return out+
+ para('Tengo una sorpresa preparada para nosotros… pero tendrás que descubrirla con estas tres pistas.')+
+ ['El 23 de enero de 2027.','Ese día quiero invitarte a comer.','Nos espera Madrid… y algo de sushi.']
+ .map((x,i)=>`<div class="envelope"><b>Pista ${i+1}</b><p>${x}</p></div>`).join('')+
+ para('Parece que tenemos una cita pendiente… ❤️');
 
  case 14:
-
- c="<ol><li>Una canción de Cruz Cafuné de Me Muevo Con Dios (título pendiente de confirmar).</li><li>Sushi.</li><li>Fuegos artificiales.</li><li>El olor a vainilla.</li><li>Soy Luna.</li><li>Un perezoso.</li><li>Honor.</li><li>Cualquier momento del día.</li><li>El peluche de Pikachu que me regalaste.</li><li>El lugar donde vimos los fuegos artificiales.</li></ol>";
-
- break;
+ return out+
+ ['Goofy Ahh Luv Joint','Sushi','Los fuegos artificiales','El olor a vainilla','Soy Luna','Un perezoso','Honor','Cualquier momento del día','El peluche de Pikachu que me regalaste','El sitio donde vimos los fuegos artificiales']
+ .map((x,i)=>`<p><b>${i+1}.</b> ${x}</p>`).join('');
 
  case 15:
-
- c=placeholder("la foto de los dos")+p("Texto romántico escrito por Alejandro, pendiente de añadir.");
-
- break;
+ return out+para('Aquí va el texto que quiero escribirte. ❤️')+
+ `<p class="small-note">Pendiente de añadir tu texto.</p>`;
 
  case 16:
-
- c=`<p>${day16}</p>`;
-
- break;
+ return out+para('Jejejeje, otra carta. Lo bueno es que han pasado ya 7 días desde la otra, así no te lleno de cartas.<br><br>Esto es una fumada, no sabes lo complicado que es esto. Lo hago porque te quiero y porque te tengo miedo. JAJAJAJAJA. Na, es broma.<br><br>Estoy deseando verte y poder darte besos, que me relaja mazo. Aparte de que me quites los puntos negros, que seguro que a día de hoy tendré más para que me quites. He hasta pensado en llenarme la cara de mierda para que me los quites, porque me mola menos cuando me cantas al oído lo de Minnie.<br><br>Pero bueno, igualmente, te doy las gracias por todo, amor. ❤️');
 
  case 17:
-
- c=p("Hay seis lugares y sueños que me gustaría vivir contigo:")
-
- +destinations.map((d,i)=>`<div class="item-card"><b>${i+1}. ${d}</b>${placeholder("foto de "+d)}<p>Mensaje para este destino pendiente.</p></div>`).join("");
-
- break;
+ return out+
+ `<div class="photo-grid">`+
+ [['Asturias','IMG_6259.jpeg'],['Ver juntos las auroras boreales','IMG_6260.jpeg'],['Egipto','IMG_6261.jpeg'],['Disneyland Paris','IMG_6262.jpeg'],['Nueva York','IMG_6263.jpeg'],['Japón','IMG_6264.jpeg']]
+ .map(x=>`<figure>${photoInline(x[1])}<figcaption>${x[0]}</figcaption></figure>`).join('')+
+ `</div>`;
 
  case 18:
-
- c=p("Bienvenida al museo oficial de nuestras tonterías. Entrada gratuita, vergüenza ajena incluida. 😂")
-
- +museum.map((x,i)=>`<div class="item-card"><b>Pieza ${i+1}: «${x[0]}»</b><p>${x[1]}</p>${placeholder("foto o vídeo de esta anécdota")}</div>`).join("");
-
- break;
+ return out+`<div id="museum">${museumMarkup()}</div>`;
 
  case 19:
-
- c=p("Diez situaciones para elegir quién es más probable que lo haga: Emma o Alejandro.")
-
- +Array.from({length:10},(_,i)=>`<div class="item-card"><b>Situación ${i+1}</b><p>Pregunta pendiente de escribir.</p><button class="option" onclick="this.classList.toggle('selected')">Emma</button><button class="option" onclick="this.classList.toggle('selected')">Alejandro</button></div>`).join("");
-
- break;
+ return out+`<div id="who">${whoMarkup()}</div>`;
 
  case 20:
-
- c=p("¡Vamos a organizar una cita en casa! Elige una opción en cada apartado.")
-
- +[["Película","Una comedia","Una romántica","Una de aventuras"],["Cena","Sushi","Pizza","Hamburguesas"],["Postre","Tarta","Helado","Gofres"],["Canción","Nuestra canción","Una alegre","Una tranquila"]]
-
- .map(a=>`<div class="item-card"><b>${a[0]}</b>${a.slice(1).map(v=>`<button class="option" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));this.classList.add('selected')">${v}</button>`).join("")}</div>`).join("");
-
- break;
+ return out+para('Abre los cinco sobres para elegir cómo sería nuestra cita perfecta en casa.')+
+ ['Película: la que tú quieras.','Cena: sushi, pizza, hamburguesa o tacos.','Postre: el que más te apetezca.','Canción: elige una que quieras escuchar.','Final: una carta bonita de Alejandro.']
+ .map((x,i)=>`<div class="envelope"><b>Sobre ${i+1}</b><p>${x}</p></div>`).join('')+
+ para('Ya tienes organizada nuestra cita perfecta. Ahora solo queda una cosa: que llegue el momento de disfrutarla juntos. Te amo. ❤️');
 
  case 21:
-
- c=p("TRÁILER OFICIAL · UNA HISTORIA DE EMMA Y ALEJANDRO")
-
- +placeholder("fotos y vídeos para el montaje")
-
- +p("Dos personas. Un montón de recuerdos. Una historia que ha tenido sus vueltas, sus risas y sus momentos inolvidables.")
-
- +p("Y esto todavía no ha terminado…");
-
- break;
+ return out+para('El tráiler de nuestra película está pendiente de añadir. ❤️');
 
  case 22:
-
- c=p("La carta de este día la escribirá Alejandro.")
-
- +'<div class="item-card">Si has llegado hasta aquí, quiero pedirte algo… Envíame un vídeo contándome qué has sentido al leer esta carta. Quiero guardar también ese recuerdo tuyo. ❤️</div>';
-
- break;
+ return out+para('Hola, Emma. ❤️<br><br>Ya queda poco para Navidad y quiero que esta carta sea una de las más importantes.<br><br>Me gustaría decirte que estos tres años contigo se me han pasado volando, y más aún a tu lado.<br><br>Quiero que sepas que esto que siento por ti no es cualquier cosa. Eres el amor de mi vida. Me encantaría poder expresar con palabras todo lo que siento por ti, pero es que siempre me quedo corto.<br><br>A pesar de todas estas idas y venidas, me ha encantado compartir mi vida contigo y todo lo que nos queda por vivir.<br><br>Me haces tan feliz que hasta lloro de alegría. Muchas gracias, de verdad, porque contigo me he sentido querido y muy a gusto, y más en este momento en el que estamos mejor que nunca.<br><br>No sabes lo feliz que soy de estar contigo.<br><br>Muchas gracias por todo. Te amo y siempre te amaré, toda la vida. ❤️<br><br>Y si has llegado hasta aquí, quiero pedirte una cosita: escríbeme por WhatsApp contándome qué has sentido al leer esta carta o mándame una foto de esa cara bonita de felicidad que seguro que tienes ahora mismo. JAJAJAJA.<br><br>Quiero guardar también ese momentito. ❤️');
 
  case 23:
-
- c=p("Completa las cinco misiones:")
-
- +["Elige vuestra foto favorita de pareja.","Recuerda vuestra primera cita.","Di tres cosas que te gustan de Alejandro.","Elige vuestro próximo destino de viaje.","Responde: ¿qué es lo que más ilusión te hace de vuestro futuro?"]
-
- .map(x=>`<label class="item-card" style="display:block"><input type="checkbox"> ${x}</label>`).join("")
-
- +p("Has completado la misión. Tu recompensa te espera el día 24…");
-
- break;
+ return out+para('Tu última misión antes de Navidad. ❤️')+
+ `<ol>
+ <li>Elige tu foto favorita de nosotros: ${photoInline('74a5d213-6c86-4797-84f7-3488b6461987.jpeg')}</li>
+ <li>¿Dónde nos conocimos y quién nos presentó? En tu casa; tu hermano nos presentó.</li>
+ <li>Escribe tres cosas que te encantan de Alejandro: <textarea placeholder="Tus tres cosas..."></textarea></li>
+ <li>Elige nuestro próximo destino:
+ <select><option>Asturias</option><option>Ver auroras boreales</option><option>Egipto</option><option>Disneyland Paris</option><option>Nueva York</option><option>Japón</option></select></li>
+ <li>Escríbeme un mensaje bonito sobre lo que sientes, nuestra historia y lo que esperas del futuro: <textarea placeholder="Tu mensaje para mí..."></textarea></li>
+ </ol>
+ <p>Misión completada. Ahora tienes algo más que un regalo: un recuerdo escrito por mí para ti. Tu recompensa te espera el día 24… ❤️</p>`;
 
  case 24:
-
- c=p("Feliz Navidad, Emma. ❤️")
-
- +placeholder("la carta final de Alejandro")
-
- +placeholder("el vídeo dedicado a Emma")
-
- +'<video controls playsinline style="width:100%" src="video-final.mp4"></video>'
-
- +p("Gracias por formar parte de mi historia. Te elegiría una y mil veces.");
-
- break;
-
+ return out+para('Gracias por formar parte de mi historia. Te elegiría una y mil veces. ❤️')+
+ `<p class="small-note">Aquí irá tu carta final y el vídeo dedicado a Emma.</p>`;
  }
-
- document.getElementById("content").innerHTML=`<h2>Día ${n} · ${titles[n-1]}</h2>${c}`;
-
- if(n===2)quiz(day2,"Da igual cuántas hayas acertado, mi parte favorita siempre será seguir creando recuerdos contigo.");
-
- if(n===6)quiz(day6,"Quiero que sigamos cuidando lo nuestro, que no dejemos de elegirnos y que construyamos muchos recuerdos más. ❤️");
-
- if(n===12){
-
-  window.reasonPool=[...reasons];
-
-  window.nextReason=()=>{
-
-   if(!reasonPool.length)reasonPool=[...reasons];
-
-   const i=Math.floor(Math.random()*reasonPool.length);
-
-   document.getElementById("reasonArea").textContent=reasonPool.splice(i,1)[0];
-
-  };
-
- }
-
-}
- function quiz(questions,finalText){
-
- let index=0,score=0;
-
- function draw(){
-
-  const q=questions[index];
-
-  document.getElementById("quizArea").innerHTML=
-
-  `<p>Pregunta ${index+1} de ${questions.length}</p>
-
-   <p><b>${q[0]}</b></p>`+
-
-  q[1].map((answer,i)=>
-
-   `<button class="option" onclick="answerQuiz(${i})">${answer}</button>`
-
-  ).join("");
-
- }
-
- window.answerQuiz=function(choice){
-
-  if(choice===questions[index][2])score++;
-
-  index++;
-
-  if(index<questions.length){draw();}
-
-  else{
-
-   let message=score===5?
-
-   "Me conoces demasiado bien, aunque todavía puedo sorprenderte.":
-
-   score>=3?
-
-   "Se nota que tenemos muchos recuerdos juntos.":
-
-   score>=1?
-
-   "Tenemos que crear muchos más recuerdos.":
-
-   "¡Nos toca repasar nuestra historia! 😂";
-
-   document.getElementById("quizArea").innerHTML=
-
-   `<h3>Has acertado ${score} de ${questions.length}</h3>
-
-   <p>${message}</p><p>${finalText}</p>`;
-
-  }
-
- };
-
- draw();
-
 }
 
-const opened=JSON.parse(localStorage.getItem("emmaOpened")||"[]");
+// DÍA 4: ÁLBUM DE RECUERDOS
+const memories=[
+['El día q me enamoré de ti','E75A585E-C62F-4E60-B7F7-FC06160FA2FD.jpeg'],
+['Sr. pica','IMG_6109.jpeg'],
+['Navidad out','ab967b62-fb1a-4761-84a8-dc573564d801.jpeg'],
+['Apoloooooo','b1e1e0e0-db55-443c-bf92-ceb41b0a975d.jpeg'],
+['Tus ojos','a48561c6-5856-4476-9de8-1cc002bc01d1.jpeg'],
+['El koala','IMG_5159.jpeg'],
+['Bollera','IMG_1378.jpeg'],
+['El abrazo del oso','d2f18895-5c45-4854-b152-55058554a819.jpeg'],
+['Nose q nombre ponerle','f45a6353-8afd-45c6-956b-bee5bc55aa8e.jpeg'],
+['Papis','74a5d213-6c86-4797-84f7-3488b6461987.jpeg']
+];
 
-const preview=new URLSearchParams(location.search).get("prueba")==="1";
-
-function isUnlocked(day){
-
- if(preview)return true;
-
- const now=new Date();
-
- const unlock=new Date(2026,11,day);
-
- now.setHours(0,0,0,0);
-
- return now>=unlock;
-
+function albumMarkup(){
+ const m=memories[albumIndex];
+ return `${photo(m[1])}
+ <p style="text-align:center">${m[0]}</p>
+ <div class="actions">
+ <button onclick="moveAlbum(-1)">← Anterior</button>
+ <button onclick="moveAlbum(1)">Siguiente →</button>
+ </div>
+ <p class="small-note">${albumIndex+1} / 10</p>`;
+}
+function moveAlbum(n){
+ albumIndex=(albumIndex+n+10)%10;
+ document.getElementById('album').innerHTML=albumMarkup();
 }
 
-function showCalendar(){
+// DÍA 9: LÍNEA DEL TIEMPO
+const timeline=[
+['26 de enero de 2025','El comienzo de todo.','66f24cdc-b7cd-4f84-b86f-b6e7c47d345c.jpeg'],
+['15 de julio de 2025','Algo empezó a cambiar.','E75A585E-C62F-4E60-B7F7-FC06160FA2FD.jpeg'],
+['3 de septiembre de 2025','Nuestro comienzo.','64d5c1f7fc0345269ad2c28de8017588.mov'],
+['Abril de 2026','Volvimos mejor que nunca.','52fc9c03-e1e8-4cc9-bb27-c2977441fae1.jpeg'],
+['Actualmente','Nuestro mejor momento. ❤️','1442a33a-c531-4532-b48a-82d2709d1af6.jpeg']
+];
 
- document.getElementById("welcome").classList.add("hidden");
-
- document.getElementById("calendar").classList.remove("hidden");
-
- renderDays();
-
+function timelineMarkup(){
+ const t=timeline[timelineIndex];
+ const media=t[2].endsWith('.mov')?video(t[2]):photo(t[2]);
+ return `<p style="text-align:center"><b>${t[0]}</b></p>
+ <h3 style="text-align:center">${t[1]}</h3>
+ ${media}
+ <div class="actions">
+ <button onclick="moveTimeline(-1)">← Anterior</button>
+ <button onclick="moveTimeline(1)">Siguiente →</button>
+ </div>
+ <p class="small-note">${timelineIndex+1} / 5</p>`;
+}
+function moveTimeline(n){
+ timelineIndex=(timelineIndex+n+5)%5;
+ document.getElementById('timeline').innerHTML=timelineMarkup();
 }
 
-function backHome(){
+// DÍA 10: VÍDEOS
+const clips=[
+'64d5c1f7fc0345269ad2c28de8017588.mov',
+'639da0a1-7b19-4084-81d0-e184f56a77c0.mov',
+'719fa010d7b14b99b47bddb9442b357d.mov',
+'IMG_1369.mov',
+'IMG_5766.mov'
+];
 
- document.getElementById("calendar").classList.add("hidden");
-
- document.getElementById("welcome").classList.remove("hidden");
-
+function videoAlbumMarkup(){
+ return `${video(clips[albumIndex])}
+ <div class="actions">
+ <button onclick="moveClips(-1)">← Anterior</button>
+ <button onclick="moveClips(1)">Siguiente vídeo →</button>
+ </div>
+ <p class="small-note">${albumIndex+1} / 5</p>`;
+}
+function moveClips(n){
+ albumIndex=(albumIndex+n+5)%5;
+ document.getElementById('videoalbum').innerHTML=videoAlbumMarkup();
 }
 
-function renderDays(){
+// DÍA 11: DICCIONARIO
+const dictionary=[
+['Abalosysusamigas','aura desde que aparecí en el mundo del roblox','IMG_2318.jpeg'],
+['Hasta el coño','frase que sueles usar tú mucho','IMG_6110.jpeg'],
+['Valep','con esto se cuando estás enfadada menos mal que te conozco eh','IMG_6256.jpeg'],
+['Te amo','depende del momento (es bait)','IMG_5650.jpeg'],
+['Toxica','aunque lo seas me gusta mucho 👉👈','IMG_6257.jpeg'],
+['Sapo','cuando no te digo cuál es el regalo o la sorpresa que tengo para ti','IMG_4844.jpeg'],
+['fuet','un día te llevo a algún museo de fuet por ahí y comemos mazo','IMG_6258.jpeg'],
+['Guilipollas','para después de cada mensaje bonito tuyo','IMG_6129.jpeg']
+];
 
- const grid=document.getElementById("days");
-
- grid.innerHTML="";
-
- for(let n=1;n<=24;n++){
-
-  const b=document.createElement("button");
-
-  b.className="day";
-
-  if(opened.includes(n))b.classList.add("opened");
-
-  if(!isUnlocked(n)){
-
-   b.classList.add("locked");
-
-   b.disabled=true;
-
-  }
-
-  b.textContent=opened.includes(n)?"♥":n;
-
-  b.onclick=()=>openDay(n);
-
-  grid.appendChild(b);
-
- }
-
- document.getElementById("progress").textContent=
-
- `Has abierto ${opened.length} de 24 sorpresas.`;
-
+function dictionaryMarkup(){
+ const x=dictionary[dictionaryIndex];
+ return `<h3 style="text-align:center">${x[0]}</h3>
+ <p style="text-align:center">${x[1]}</p>
+ ${photo(x[2])}
+ <div class="actions">
+ <button onclick="moveDictionary(-1)">← Anterior</button>
+ <button onclick="moveDictionary(1)">Siguiente →</button>
+ </div>
+ <p class="small-note">${dictionaryIndex+1} / 8</p>`;
+}
+function moveDictionary(n){
+ dictionaryIndex=(dictionaryIndex+n+8)%8;
+ document.getElementById('dictionary').innerHTML=dictionaryMarkup();
 }
 
-function openDay(n){
+// DÍA 12: RULETA DE RAZONES
+const reasons=[
+'Me haces reír aunque no se te suba',
+'Me gusta el cariño que me das',
+'me ayudas con temas íntimos',
+'me gusta cuando te pones bien perrona',
+'eres un pedazo de queso pero no más que yo',
+'six',
+'seven',
+'aunq sea estar abrazados me siento cómodo y feliz',
+'me das comida 👉👈',
+'estás muy atenta a mi',
+'me ayudas a socializar con tus amigas',
+'hay más razones pero como las ponga todas no acabo, te amo'
+];
 
- if(!isUnlocked(n))return;
-
- if(!opened.includes(n)){
-
-  opened.push(n);
-
-  localStorage.setItem("emmaOpened",JSON.stringify(opened));
-
- }
-
- renderDays();
-
- renderContent(n);
-
- document.getElementById("modal").classList.remove("hidden");
-
+function spinReason(){
+ if(rouletteUsed.length===12)rouletteUsed=[];
+ const available=reasons.map((_,i)=>i)
+ .filter(i=>!rouletteUsed.includes(i));
+ const i=available[Math.floor(Math.random()*available.length)];
+ rouletteUsed.push(i);
+ document.getElementById('reason').textContent=reasons[i];
 }
 
-function closeDay(){
+// DÍA 18: MUSEO
+const museum=[
+['La traición de Roblox','Cuando Emma me vendió en una partida de Roblox.','81bd4b65-5243-4ce5-b1e1-c41c9f603c53.jpeg'],
+['Los celos más inesperados','La historia tan surrealista de Miguel.','IMG_6265.png'],
+['La revelación política','El día que descubrí que Emma era de izquierdas.','IMG_6266.jpeg'],
+['La mañana con mi hermano','Cuando fuimos los tres al parque.','70F34A7F-12E9-48F0-8516-168EA67198A1.jpeg'],
+['I LOVE RUIZ','Ese vídeo tan memorable.','1b27f351-e084-4025-8e46-f2904ccb4890.mp4'],
+['La estrella de Soy Luna','Emma cantando Soy Luna.','IMG_1377.mov']
+];
 
- document.getElementById("modal").classList.add("hidden");
-
+function museumMarkup(){
+ const x=museum[museumIndex];
+ const media=/\.(mp4|mov)$/i.test(x[2])?video(x[2]):photo(x[2]);
+ return `<h3 style="text-align:center">${x[0]}</h3>
+ ${media}
+ <p>${x[1]}</p>
+ <p>Valoración del museo: ${museumIndex+5}/10 ⭐</p>
+ <div class="actions">
+ <button onclick="moveMuseum(-1)">← Anterior</button>
+ <button onclick="moveMuseum(1)">Siguiente →</button>
+ </div>
+ <p class="small-note">${museumIndex+1} / 6</p>`;
+}
+function moveMuseum(n){
+ museumIndex=(museumIndex+n+6)%6;
+ document.getElementById('museum').innerHTML=museumMarkup();
 }
 
-function toggleMusic(){
+// DÍA 19: ¿QUIÉN ES MÁS PROBABLE?
+const whoQuestions=[
+['¿Quién es más probable que se quede dormido mientras estáis viendo una película?','Emma'],
+['¿Quién es más probable que se enfade por una tontería y luego se le pase a los cinco minutos?','Emma'],
+['¿Quién es más probable que empiece a reírse en el momento menos oportuno?','Los dos'],
+['¿Quién es más probable que diga “tengo hambre” nada más terminar de comer?','Alejandro'],
+['¿Quién es más probable que tarde una eternidad en decidir qué película ver y al final no elija ninguna?','Los dos'],
+['¿Quién es más probable que dé un abrazo y no quiera soltarlo?','Alejandro'],
+['¿Quién es más probable que haga una tontería solo para conseguir que el otro se ría?','Alejandro'],
+['¿Quién es más probable que quiera hacer planes juntos incluso cuando estáis cansados?','Los dos'],
+['¿Quién es más probable que empiece una guerra de cosquillas o de bromas y luego no sepa parar?','Emma'],
+['¿Quién es más probable que organice una sorpresa romántica sin que el otro sospeche nada?','Alejandro']
+];
 
- const music=document.getElementById("music");
-
- if(music.paused){
-
-  music.play().catch(()=>alert("Comprueba que has subido videoplayback.mp4 al repositorio."));
-
+function whoMarkup(){
+ const q=whoQuestions[whoIndex];
+ return `<p><b>Pregunta ${whoIndex+1} de 10</b></p>
+ <p>${q[0]}</p>
+ ${['Emma','Alejandro','Los dos'].map(x=>
+ `<button class="choice" onclick="chooseWho('${x}')">${x}</button>`
+ ).join('')}`;
+}
+function chooseWho(answer){
+ whoIndex++;
+ if(whoIndex<10){
+  document.getElementById('who').innerHTML=whoMarkup();
  }else{
-
-  music.pause();
-
+  document.getElementById('who').innerHTML=
+  '<h3>¡Terminaste!</h3><p>Estas eran mis respuestas:</p>'+
+  whoQuestions.map((q,i)=>`<p>${i+1}. ${q[1]}</p>`).join('')+
+  '<p>Lo importante es que nos conocemos cada día un poquito más. ❤️</p>';
  }
-
 }
+
+// INICIALIZACIÓN DEL CALENDARIO
+
+document.addEventListener('DOMContentLoaded',()=>{
+ renderDays();
+});
+
+// CERRAR LA VENTANA AL PULSAR FUERA DE LA CARTA
+document.getElementById('modal').addEventListener('click',function(e){
+ if(e.target===this)closeDay();
+});
+
+// MARCAR EL DÍA COMO ABIERTO
+const originalOpenDay=openDay;
+openDay=function(d){
+ originalOpenDay(d);
+ markOpened(d);
+};
+
+// MENSAJE AL COMPLETAR LOS 24 DÍAS
+function checkCompletion(){
+ if(opened.length===24){
+  document.getElementById('progress').textContent=
+  'Has llegado al final, pero nuestra historia continúa ❤️';
+ }
+}
+checkCompletion();
 
 </script>
-
 </body>
-
 </html>
